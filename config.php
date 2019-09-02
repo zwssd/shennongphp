@@ -17,3 +17,6 @@ define('SYSTEM_PATH','system'.DIRECTORY_SEPARATOR);
 
 // 应用目录
 define('APP_PATH','app'.DIRECTORY_SEPARATOR);
+
+// 默认操作名
+define('DEFAULT_ACTION','index');
