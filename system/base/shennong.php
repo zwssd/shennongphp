@@ -22,5 +22,10 @@ if (!isset($_SERVER['REQUEST_URI'])) {
 	}
 }
 
+// Log
+require_once(SYSTEM_PATH.'library/log.php');
 // 路由
 require_once(SYSTEM_PATH.'base/router.php');
+
+$router = new Router($_SERVER['REQUEST_URI']);
+$router->execute();

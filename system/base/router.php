@@ -7,7 +7,7 @@ defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 final class Router
 {
     private $route;
-    private $method = DEFAULT_ACTION;
+    private $method = DEFAULT_FUNCTION;
 
     public function __construct($route)
     {
@@ -23,5 +23,31 @@ final class Router
                 $this->method = array_pop($parts);
             }
         }
+    }
+
+    public function execute($args = array()){
+        $logger = new Log();
+        if (substr($this->method, 0, 2) == '__') {
+            return $logger->write('错误：不允许调用魔术方法！');
+        }
+
+        $file  = DIR_APPLICATION . 'controller/' . $this->route . '.php';	
+		$class = preg_replace('/[^a-zA-Z0-9]/', '', $this->route).'Controller';
+		
+		// 初始化类
+		if (is_file($file)) {
+			include_once($file);
+			$controller = new $class();
+		} else {
+            return $logger->write('错误：不能调用 ' . $this->route . '/' . $this->method . '！');
+        }
+        
+        $reflection = new ReflectionClass($class);
+		
+		if ($reflection->hasMethod($this->method) && $reflection->getMethod($this->method)->getNumberOfRequiredParameters() <= count($args)) {
+			return call_user_func_array(array($controller, $this->method), $args);
+		} else {
+			return $logger->write('错误：不能调用 ' . $this->route . '/' . $this->method . '!');
+		}
     }
 }

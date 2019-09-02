@@ -18,5 +18,8 @@ define('SYSTEM_PATH','system'.DIRECTORY_SEPARATOR);
 // 应用目录
 define('APP_PATH','app'.DIRECTORY_SEPARATOR);
 
+// Log目录
+define('LOG_PATH',SYSTEM_PATH.DIRECTORY_SEPARATOR.'log'.DIRECTORY_SEPARATOR);
+
 // 默认操作名
 define('DEFAULT_ACTION','index');
