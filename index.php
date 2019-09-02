@@ -48,7 +48,3 @@ if (!is_dir(APP_PATH)) {
 
 // 加载框架文件
 require_once(SYSTEM_PATH . 'base/shennong.php');
-
-// 实例化框架类
-$start = new ShenNong;
-$start->start();

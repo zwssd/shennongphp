@@ -7,10 +7,17 @@ defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 final class Router
 {
     private $route;
-    private $method = DEFAULT_FUNCTION;
+    private $method = DEFAULT_ACTION;
 
     public function __construct($route)
     {
+        $routepos = strpos($route,'?route='); 
+        if(strpos($route,'?route=')>0){
+            $route = substr($route,$routepos+7);
+        }else{
+            $routepos = strpos($route,'index.php/'); 
+            $route = substr($route,$routepos+10);
+        }
         $parts = explode('/', preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route));
 
         while ($parts) {
@@ -31,9 +38,10 @@ final class Router
             return $logger->write('错误：不允许调用魔术方法！');
         }
 
-        $file  = DIR_APPLICATION . 'controller/' . $this->route . '.php';	
-		$class = preg_replace('/[^a-zA-Z0-9]/', '', $this->route).'Controller';
-		
+        $file  = APP_PATH . 'controller/' . $this->route . '.php';	
+        $parts = explode('/', preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$this->route));
+        $class = $parts[1].'Controller';
+        
 		// 初始化类
 		if (is_file($file)) {
 			include_once($file);
