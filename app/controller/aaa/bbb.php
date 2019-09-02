@@ -1,17 +1,29 @@
 <?php
 
-class bbbController{
-    
+class bbbController
+{
+
     public function __construct()
     {
-        echo 'aaabbbController ok!!!';   
+        echo 'aaabbbController ok!!!';
     }
 
-    public function index(){
+    public function index()
+    {
         echo 'aaabbbController   index() ok!!!';
     }
 
-    public function test(){
+    public function test()
+    {
         echo 'aaabbbController   test() ok!!!';
+
+        require_once 'system/lib/template/Twig/Autoloader.php';
+        Twig_Autoloader::register();
+        $loader = new Twig_Loader_Array(array(
+            'index' => 'Hello {{ name }}!',
+        ));
+        $twig = new Twig_Environment($loader);
+        echo $twig->render('index', array('name' => 'Fabien'));
+        exit;
     }
 }
