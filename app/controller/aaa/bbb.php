@@ -17,7 +17,8 @@ class bbbController
     {
         echo 'aaabbbController   test() ok!!!';
 
-        require_once 'system/lib/template/Twig/Autoloader.php';
+        //require_once 'system/lib/template/Twig/Autoloader.php';
+        var_dump($load);
         Twig_Autoloader::register();
         $loader = new Twig_Loader_Array(array(
             'index' => 'Hello {{ name }}!',

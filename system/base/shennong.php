@@ -24,8 +24,15 @@ if (!isset($_SERVER['REQUEST_URI'])) {
 
 // Log
 require_once(SYSTEM_PATH . 'lib/log.php');
+// Twig模板引擎
+require_once(SYSTEM_PATH . 'lib/template/twig.php');
+require_once(SYSTEM_PATH . 'lib/template.php');
+// Load引擎
+require_once(SYSTEM_PATH . 'base/load.php');
+$load = new Load();
+$tpl = $load->view('aaa/bbb',array('aa'=>'bb'));
+echo $tpl;exit;
 // 路由
 require_once(SYSTEM_PATH . 'base/router.php');
-
 $router = new Router($_SERVER['REQUEST_URI']);
 $router->execute();
