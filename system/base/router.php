@@ -32,7 +32,7 @@ final class Router
         }
     }
 
-    public function execute($args = array()){
+    public function execute($reg,$args = array()){
         $logger = new Log();
         if (substr($this->method, 0, 2) == '__') {
             return $logger->write('错误：不允许调用魔术方法！');
@@ -45,7 +45,7 @@ final class Router
 		// 初始化类
 		if (is_file($file)) {
 			include_once($file);
-			$controller = new $class();
+			$controller = new $class($reg);
 		} else {
             return $logger->write('错误：不能调用 ' . $this->route . '/' . $this->method . '！');
         }

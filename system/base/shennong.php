@@ -3,6 +3,9 @@
 // 框架根
 defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
+// 全局变量
+$reg = new Reg();
+
 // 加载公共函数
 require_once(SYSTEM_PATH . 'base/global.php');
 
@@ -22,17 +25,49 @@ if (!isset($_SERVER['REQUEST_URI'])) {
 	}
 }
 
-// Log
-require_once(SYSTEM_PATH . 'lib/log.php');
-// Twig模板引擎
-require_once(SYSTEM_PATH . 'lib/template/twig.php');
-require_once(SYSTEM_PATH . 'lib/template.php');
+function lib($class)
+{
+	$result = false;
+
+	// 自动装载lib下的根文件和子文件
+	$libsubpath = array(
+		'lib' => '/',
+		'template' => 'template/'
+	);
+
+	foreach ($libsubpath as $key => $value) {
+		$file = SYSTEM_PATH . 'lib/' . $value . strtolower($class) . '.php';
+		if (is_file($file)) {
+			require_once($file);
+			$result = true;
+			break;
+		}
+	}
+	if($result){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+spl_autoload_register('lib');
+spl_autoload_extensions('.php');
+
+// 控制器基类
+require_once(SYSTEM_PATH . 'base/controller.php');
 // Load引擎
 require_once(SYSTEM_PATH . 'base/load.php');
-$load = new Load();
-$tpl = $load->view('aaa/bbb',array('aa'=>'bb'));
-echo $tpl;exit;
+$load = new Load($reg);
+$reg->set('load', $load);
+$tpl = $load->view('aaa/bbb', array('aa' => 'bb'));
+$reg->set('tpl', $tpl);
+// 页面资源
+$res = new Res();
+$res->addHeader('Content-Type: text/html; charset=utf-8');
+$reg->set('res', $res);
 // 路由
 require_once(SYSTEM_PATH . 'base/router.php');
 $router = new Router($_SERVER['REQUEST_URI']);
-$router->execute();
+$router->execute($reg);
+// 输出
+$res->out();

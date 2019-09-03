@@ -46,5 +46,7 @@ if (!is_dir(APP_PATH)) {
 	exit(3); // EXIT
 }
 
+// 加载全局变量文件
+require_once(SYSTEM_PATH . 'base/reg.php');
 // 加载框架文件
 require_once(SYSTEM_PATH . 'base/shennong.php');
