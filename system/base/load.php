@@ -7,24 +7,24 @@ final class Load
 {
     protected $reg;
 
-    public function __construct($reg) {
-		$this->reg = $reg;
+    public function __construct($reg)
+    {
+        $this->reg = $reg;
     }
-    
-    public function controller($route, $data = array()) {
-		$route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
-		
-		$action = new Action($route);
-		$output = $action->execute($this->reg, array(&$data));
-		
-		return $output;
-	}
+
+    public function controller($route, $data = array())
+    {
+        $route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string) $route);
+
+        $action = new Action($route);
+        $output = $action->execute($this->reg, array(&$data));
+
+        return $output;
+    }
 
     public function view($route, $data = array())
     {
-        $route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
-
-        $trigger = $route;
+        $route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string) $route);
 
         $template = '';
 
@@ -37,5 +37,14 @@ final class Load
         $output = $template->render($route, false);
 
         return $output;
+    }
+
+    public function db($params = '',$sql_assembly = NULL)
+    {
+        $database = '';
+
+        $database = new Db($this->reg);
+
+        return $database->db($params,$sql_assembly);     
     }
 }

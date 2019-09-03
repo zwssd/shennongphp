@@ -32,7 +32,9 @@ function lib($class)
 	// 自动装载lib下的根文件和子文件
 	$libsubpath = array(
 		'lib' => '/',
-		'template' => 'template/'
+		'template' => 'template/',
+		'db' => 'db/',
+		'dbdrive' => 'db/drive/'.$class.'/'
 	);
 
 	foreach ($libsubpath as $key => $value) {
@@ -53,14 +55,17 @@ function lib($class)
 spl_autoload_register('lib');
 spl_autoload_extensions('.php');
 
+// 日志类初始化
+$logger = new Log();
+$reg->set('log', $logger);
+
 // 控制器基类
 require_once(SYSTEM_PATH . 'base/controller.php');
 // Load引擎
 require_once(SYSTEM_PATH . 'base/load.php');
 $load = new Load($reg);
 $reg->set('load', $load);
-$tpl = $load->view('aaa/bbb', array('aa' => 'bb'));
-$reg->set('tpl', $tpl);
+
 // 页面资源
 $res = new Res();
 $res->addHeader('Content-Type: text/html; charset=utf-8');
