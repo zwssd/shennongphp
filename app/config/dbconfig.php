@@ -7,6 +7,7 @@ $sql_assembly = TRUE;
 
 $db = array(
 	'hostname' => 'localhost',
+	'port' => '3306',
 	'username' => '',
 	'password' => '',
 	'database' => '',

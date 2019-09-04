@@ -5,7 +5,13 @@ defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
 final class Db
 {
+    protected $DB;
+
     protected $reg;
+
+    public $result;
+
+    public $result_array = array();
 
     public function __construct($reg)
     {
@@ -22,10 +28,30 @@ final class Db
             return false;
         }
 
-        include($dbfile);
+        require_once($dbfile);
 
-        $DB = new Mysqli($params);
+        $this->DB = new Mysqli($db);
 
-        var_dump($db);exit;
+        $this->DB->init();
+
+        $this->result = $this->DB->query('select * from test');
+    }
+
+    public function result_array(){
+        if (count($this->result_array) > 0)
+		{
+			return $this->result_array;
+        }
+        
+        if(!$this->result){
+            return array();
+        }
+
+        while ($row = $this->DB->mysqli_fetch_assoc())
+		{
+			$this->result_array[] = $row;
+		}
+
+		return $this->result_array;
     }
 }
