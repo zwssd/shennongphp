@@ -34,7 +34,7 @@ function lib($class)
 		'lib' => '/',
 		'template' => 'template/',
 		'db' => 'db/',
-		'dbdrive' => 'db/drive/'.$class.'/'
+		'dbdrive' => 'db/drive/'.strtolower($class).'/'
 	);
 
 	foreach ($libsubpath as $key => $value) {
@@ -66,6 +66,9 @@ require_once(SYSTEM_PATH . 'base/load.php');
 $load = new Load($reg);
 $reg->set('load', $load);
 
+// 数据库
+$db = new Db($reg);
+$reg->set('db',$db);
 // 页面资源
 $res = new Res();
 $res->addHeader('Content-Type: text/html; charset=utf-8');

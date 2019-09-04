@@ -3,7 +3,7 @@
 // 框架根
 defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
-class Mysqli extends Db_driver
+class MysqliDriver
 {
 
     public $hostname;
@@ -27,7 +27,8 @@ class Mysqli extends Db_driver
     public $cachedir;
     public $socket = null;
 
-    public $conn;
+    protected $conn;
+    protected $conn_result;
 
     protected $mysqli_connect;
 
@@ -42,7 +43,7 @@ class Mysqli extends Db_driver
         }
     }
 
-    public function init()
+    public function initialization()
     {
         if($this->conn){
             return true;
@@ -53,6 +54,8 @@ class Mysqli extends Db_driver
         if(!$this->conn){
             return false;
         }
+
+        $this->select_db($this->database);
 
         return $this->set_charset($this->char_set);
     }
@@ -67,12 +70,6 @@ class Mysqli extends Db_driver
 
         if ($this->mysqli_connect->real_connect($this->hostname, $this->username, $this->password, $this->database, $this->port, $this->socket, $client_flags))
         {
-            if(empty($this->_mysqli->query("SHOW STATUS LIKE 'ssl_cipher'")->fetch_object()->Value)
-            {
-                $this->mysqli_connect->close();
-                return false;
-            }
-
             return $this->mysqli_connect;
         }
 
@@ -84,7 +81,7 @@ class Mysqli extends Db_driver
 		return $this->conn->set_charset($charset);
     }
     
-    public function select_db($database = '')
+    protected function select_db($database = '')
     {
         if($database === '')    
         {
@@ -115,9 +112,9 @@ class Mysqli extends Db_driver
         }
     }
 
-    protected function query($sql)
+    public function query($sql)
 	{
-		return $this->conn->query($this->trim_query($sql));
+        return $this->conn->query($this->trim_query($sql));
 	}
 
     protected function trim_query($sql){
@@ -127,7 +124,7 @@ class Mysqli extends Db_driver
         return $sql;
     }
 
-    protected function mysqli_fetch_assoc(){
-        return $this->result->mysqli_fetch_assoc();
+    public function fetch_assoc($result){
+        return $result->fetch_assoc();
     }
 }

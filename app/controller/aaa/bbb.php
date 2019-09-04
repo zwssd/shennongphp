@@ -13,6 +13,9 @@ class bbbController extends Controller
 
         $this->res->setOut($this->load->view('aaa/bbb',array('aa'=>'bb')));
 
-        $this->load->db('aaaa');
+        $this->db->db('aaaa');
+
+        $result_array = $this->db->result_array();
+        var_dump($result_array);
     }
 }

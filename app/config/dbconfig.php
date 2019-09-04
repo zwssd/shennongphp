@@ -5,12 +5,12 @@ defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
 $sql_assembly = TRUE;
 
-$db = array(
+$db_config = array(
 	'hostname' => 'localhost',
 	'port' => '3306',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'username' => 'root',
+	'password' => '123123',
+	'database' => 'test',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
