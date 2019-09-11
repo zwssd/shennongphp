@@ -11,7 +11,7 @@ class bbbController extends Controller
     {
         echo 'aaabbbController   test() ok!!!';
 
-        $this->res->setOut($this->load->view('aaa/bbb',array('aa'=>'bb')));
+        $this->res->setExp($this->load->view('aaa/bbb',array('aa'=>'bb')));
 
         $this->db->db('aaaa');
 

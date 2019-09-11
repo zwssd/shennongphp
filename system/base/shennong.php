@@ -78,4 +78,4 @@ require_once(SYSTEM_PATH . 'base/router.php');
 $router = new Router($_SERVER['REQUEST_URI']);
 $router->execute($reg);
 // 输出
-$res->out();
+$res->exp();

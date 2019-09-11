@@ -34,3 +34,30 @@ if(!function_exists('handler_error')) {
         return true;
     }
 }
+
+if ( ! function_exists('show_error'))
+{
+	/*
+	 * @param	string
+	 * @param	int
+	 * @param	string
+	 * @return	void
+	 */
+	function show_error($message, $status_code = 500, $heading = 'An Error Was Encountered')
+	{
+		$status_code = abs($status_code);
+		if ($status_code < 100)
+		{
+			$exit_status = $status_code + 9; // 9 is EXIT__AUTO_MIN
+			$status_code = 500;
+		}
+		else
+		{
+			$exit_status = 1; // EXIT_ERROR
+		}
+
+		$except = new Except();
+		echo $except->show_error($heading, $message, 'show_error', $status_code);
+		exit($exit_status);
+	}
+}

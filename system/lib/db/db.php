@@ -34,6 +34,8 @@ final class Db
 
         $this->mysqlidriver->initialization();
 
+        show_error('db_error',500);
+
         $this->result = $this->mysqlidriver->query('select * from test');
     }
 

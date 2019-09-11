@@ -6,30 +6,30 @@ defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 class Res
 {
     private $header = array();
-    private $out;
+    private $exp;
 
     public function addHeader($header)
     {
         $this->header[] = $header;
     }
 
-    public function getOut()
+    public function getExp()
     {
-        return $this->out;
+        return $this->exp;
     }
 
-    public function setOut($out)
+    public function setExp($exp)
     {
-        $this->out = $out;
+        $this->exp = $exp;
     }
 
-    public function out()
+    public function exp()
     {
-        if ($this->out) {
+        if ($this->exp) {
             foreach ($this->header as $header) {
                 header($header, true);
             }
-            echo $this->out;
+            echo $this->exp;
         }
     }
 }
