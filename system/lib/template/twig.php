@@ -18,7 +18,7 @@ final class Twig {
 	
 	public function render($template, $cache = false) {
         $logger = new Log();
-		$loader = new \Twig_Loader_Filesystem(TEMPLATE_PATH);
+		$loader = new \Twig_Loader_Filesystem(VIEW_PATH);
 
 		$config = array('autoescape' => false);
 

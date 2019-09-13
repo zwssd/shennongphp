@@ -18,6 +18,7 @@ final class Load
 		if (!$this->reg->has(str_replace('/', '_', $route) . '_model')) {
 			$file  = APP_PATH . 'model/' . $route . '.php';
             $class = trim(strrchr($route, '/'),'/') . 'Model';
+            $class = preg_replace('/[^a-zA-Z0-9]/', '', $route) . 'Model';
 
 			if (is_file($file)) {
                 include_once($file);
