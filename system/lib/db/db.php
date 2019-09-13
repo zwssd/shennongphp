@@ -52,6 +52,9 @@ final class Db
 
     public function query($query)
     {
+        $results = new stdClass();
         $this->result = $this->mysqlidriver->query($query);
+        $results->query = $this->result_array();
+        return $results;
     }
 }
