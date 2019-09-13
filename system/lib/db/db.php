@@ -16,10 +16,7 @@ final class Db
     public function __construct($reg)
     {
         $this->reg = $reg;
-    }
 
-    public function db($params = '', $sql_assembly = NULL)
-    {
         if (
             !file_exists($dbfile = APP_PATH . 'config/' . ENV . '/dbconfig.php')
             && !file_exists($dbfile = APP_PATH . 'config/dbconfig.php')
@@ -33,10 +30,6 @@ final class Db
         $this->mysqlidriver = new MysqliDriver($db_config);
 
         $this->mysqlidriver->initialization();
-
-        show_error('db_error',500);
-
-        $this->result = $this->mysqlidriver->query('select * from test');
     }
 
     public function result_array(){
@@ -55,5 +48,10 @@ final class Db
 		}
 
 		return $this->result_array;
+    }
+
+    public function query($query)
+    {
+        $this->result = $this->mysqlidriver->query($query);
     }
 }

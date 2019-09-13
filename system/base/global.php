@@ -37,12 +37,6 @@ if(!function_exists('handler_error')) {
 
 if ( ! function_exists('show_error'))
 {
-	/*
-	 * @param	string
-	 * @param	int
-	 * @param	string
-	 * @return	void
-	 */
 	function show_error($message, $status_code = 500, $heading = 'An Error Was Encountered')
 	{
 		$status_code = abs($status_code);

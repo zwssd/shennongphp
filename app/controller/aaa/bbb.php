@@ -9,13 +9,13 @@ class bbbController extends Controller
 
     public function test()
     {
+        $this->load->model('aaa/bbb');
+
+        $result_array = $this->aaa_bbb_model->getTest(1);
+        var_dump($result_array);
+
         echo 'aaabbbController   test() ok!!!';
 
         $this->res->setExp($this->load->view('aaa/bbb',array('aa'=>'bb')));
-
-        $this->db->db('aaaa');
-
-        $result_array = $this->db->result_array();
-        var_dump($result_array);
     }
 }

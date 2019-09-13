@@ -61,6 +61,8 @@ $reg->set('log', $logger);
 
 // 控制器基类
 require_once(SYSTEM_PATH . 'base/controller.php');
+// 模型基类
+require_once(SYSTEM_PATH . 'base/model.php');
 // Load引擎
 require_once(SYSTEM_PATH . 'base/load.php');
 $load = new Load($reg);

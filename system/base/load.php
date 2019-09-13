@@ -12,6 +12,25 @@ final class Load
         $this->reg = $reg;
     }
 
+    public function model($route) {
+		$route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
+		
+		if (!$this->reg->has(str_replace('/', '_', $route) . '_model')) {
+			$file  = APP_PATH . 'model/' . $route . '.php';
+            $class = trim(strrchr($route, '/'),'/') . 'Model';
+
+			if (is_file($file)) {
+                include_once($file);
+                
+                $proxy = new $class($this->reg);
+				
+				$this->reg->set(str_replace('/', '_', (string)$route) . '_model', $proxy);
+			} else {
+				throw trigger_error('错误：不能取出模型 ' . $route . '!');
+			}
+		}
+	}
+
     public function controller($route, $data = array())
     {
         $route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string) $route);
