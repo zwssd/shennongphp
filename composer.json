@@ -12,7 +12,6 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "shennongphp": "^0.1"
+        "zwssd/shennongphp":"dev-master@master"
     }
 }
