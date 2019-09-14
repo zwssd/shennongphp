@@ -12,6 +12,6 @@
         }
     ],
     "require": {
-        "zwssd/shennongphp":"1.0@master"
+        "zwssd/shennongphp":"0.1@master"
     }
 }
