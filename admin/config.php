@@ -13,13 +13,13 @@ define('VERSION','0.0.1');
 define('ENV', 'dev');
 
 // 根目录
-define('BASE_PATH',str_replace('\\','/',realpath(dirname(__FILE__).'/'))."/");
+define('BASE_PATH',realpath(dirname(__FILE__).'/../').DIRECTORY_SEPARATOR);
 
 // 系统目录
 define('SYSTEM_PATH',BASE_PATH.'system'.DIRECTORY_SEPARATOR);
 
 // 应用目录
-define('APP_PATH',BASE_PATH.'app'.DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR);
+define('APP_PATH',BASE_PATH.'admin'.DIRECTORY_SEPARATOR);
 
 // 模板目录
 define('VIEW_PATH',APP_PATH.'view'.DIRECTORY_SEPARATOR);
