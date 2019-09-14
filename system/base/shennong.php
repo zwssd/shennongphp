@@ -3,6 +3,8 @@
 // 框架根
 defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
+// 加载全局函数
+require_once(SYSTEM_PATH . 'base/reg.php');
 // 全局变量
 $reg = new Reg();
 
