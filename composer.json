@@ -12,12 +12,6 @@
         }
     ],
     "require": {
-        "zwssd/shennongphp":"dev-master@master"
-    },
-    "repositories": [
-        {
-           "type": "project",
-           "url": "https://github.com/zwssd/shennongphp" 
-        }
-      ]
+        "zwssd/shennongphp":"1.0@master"
+    }
 }
