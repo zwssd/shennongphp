@@ -1,8 +1,16 @@
 {
     "name": "zwssd/shennongphp",
     "description": "php framework php 框架 简洁的php框架",
+    "keywords":["php","framework","shennong"],
     "type": "project",
     "license": "MIT",
-    "minimum-stability": "stable",
-    "require": {}
+    "authors": [
+        {
+            "name": "zwssd",
+            "email": "zwssd1980@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    }
 }
