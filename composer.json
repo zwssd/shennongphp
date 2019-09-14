@@ -1,0 +1,8 @@
+{
+    "name": "zwssd/shennongphp",
+    "description": "php framework php 框架 简洁的php框架",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {}
+}
