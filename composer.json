@@ -9,5 +9,8 @@
             "name": "zwssd",
             "email": "zwssd1980@163.com"
         }
-    ]
+    ],
+    "require": {
+        "php": ">=5.3"
+    }
 }
