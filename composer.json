@@ -4,14 +4,10 @@
     "keywords":["php","framework","shennong"],
     "type": "project",
     "license": "MIT",
-    "version": "0.1",
     "authors": [
         {
             "name": "zwssd",
             "email": "zwssd1980@163.com"
         }
-    ],
-    "require": {
-        "zwssd/shennongphp":"0.1@master"
-    }
+    ]
 }
