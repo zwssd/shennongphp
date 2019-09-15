@@ -29,3 +29,12 @@ define('LOG_PATH',SYSTEM_PATH.DIRECTORY_SEPARATOR.'log'.DIRECTORY_SEPARATOR);
 
 // 默认操作名
 define('DEFAULT_ACTION','index');
+
+//数据库
+define('DB_DRIVER', 'mysqli');
+define('DB_HOSTNAME', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '123123');
+define('DB_DATABASE', 'test');
+define('DB_PORT', '3306');
+define('DB_PREFIX', '');

@@ -17,15 +17,15 @@ final class Db
     {
         $this->reg = $reg;
 
-        if (
-            !file_exists($dbfile = APP_PATH . 'config/' . ENV . '/dbconfig.php')
-            && !file_exists($dbfile = APP_PATH . 'config/dbconfig.php')
-        ) {
-            $this->reg->write('没有找到数据库配置文件：dbconfig.php');
-            return false;
-        }
-
-        require_once($dbfile);
+        $db_config = array(
+            'hostname' => DB_HOSTNAME,
+	        'port' => DB_PORT,
+	        'username' => DB_USERNAME,
+	        'password' => DB_PASSWORD,
+	        'database' => DB_DATABASE,
+	        'dbdriver' => DB_DRIVER,
+	        'dbprefix' => ''
+        );
 
         $this->mysqlidriver = new MysqliDriver($db_config);
 
