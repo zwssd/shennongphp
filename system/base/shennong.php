@@ -82,7 +82,7 @@ $reg->set('db',$db);
 
 // 缓存
 $cache = new Cache($__['cache_engine'], $__['cache_expire']);
-$registry->set('cache', $cache);
+$reg->set('cache', $cache);
 
 // 页面资源
 $res = new Res();
