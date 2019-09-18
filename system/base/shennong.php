@@ -31,13 +31,19 @@ function lib($class)
 {
 	$result = false;
 
-	// 自动装载lib下的根文件和子文件
+	// 自动装载lib下的根文件和子目录下的文件
 	$libsubpath = array(
 		'lib' => '/',
 		'template' => 'template/',
 		'db' => 'db/',
+		'cache' => 'cache/',
 		'dbdrive' => 'db/drive/'.strtolower($class).'/'
 	);
+
+	//正则去掉$class中的namespace
+	if(strrpos($class,"\\")>0){
+		$class = preg_replace('/.*\\\\/','',$class);
+	}
 
 	foreach ($libsubpath as $key => $value) {
 		$file = SYSTEM_PATH . 'lib/' . $value . strtolower($class) . '.php';
@@ -73,6 +79,11 @@ $reg->set('load', $load);
 // 数据库
 $db = new Db($reg);
 $reg->set('db',$db);
+
+// 缓存
+$cache = new Cache($__['cache_engine'], $__['cache_expire']);
+$registry->set('cache', $cache);
+
 // 页面资源
 $res = new Res();
 $res->addHeader('Content-Type: text/html; charset=utf-8');
