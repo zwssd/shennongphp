@@ -27,6 +27,13 @@ define('VIEW_PATH',APP_PATH.'view'.DIRECTORY_SEPARATOR);
 // Log目录
 define('LOG_PATH',SYSTEM_PATH.DIRECTORY_SEPARATOR.'log'.DIRECTORY_SEPARATOR);
 
+// 缓存配置
+define('CACHE_PATH',BASE_PATH.'cache'.DIRECTORY_SEPARATOR);
+define('CACHE_PREFIX','sncache');
+// Apc, File, Mem, Memcached or Redis
+$__['cache_engine']         = 'File';
+$__['cache_expire']         = 3600;
+
 // 默认操作名
 define('DEFAULT_ACTION','index');
 
