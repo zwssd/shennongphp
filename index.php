@@ -14,13 +14,13 @@ require_once($config);
 switch (ENV) {
 	case 'dev':
 	case 'test':
-		ini_set('display_errors', 1);
 		error_reporting(E_ALL);
+		ini_set('display_errors', 'On');
 		break;
 
 	case 'pro':
-		ini_set('display_errors', 0);
-		error_reporting(0);
+		ini_set('display_errors', 'Off');
+		error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
 		break;
 
 	default:

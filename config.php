@@ -30,18 +30,21 @@ define('LOG_PATH',SYSTEM_PATH.DIRECTORY_SEPARATOR.'log'.DIRECTORY_SEPARATOR);
 // 缓存配置
 define('CACHE_PATH',BASE_PATH.'cache'.DIRECTORY_SEPARATOR);
 define('CACHE_PREFIX','sncache');
+
 // Apc, File, Mem, Memcached or Redis
+define('CACHE_HOSTNAME','127.0.0.1');//Mem Memcached Redis 主机
+define('CACHE_PORT','1234');//Mem Memcached Redis 端口
 $__['cache_engine']         = 'File';
 $__['cache_expire']         = 3600;
 
 // 默认操作名
-define('DEFAULT_ACTION','index');
+define('DEFAULT_ROUTE','blog/default/index');
 
 //数据库配置
 define('DB_DRIVER', 'mysqli');
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', '123123');
 define('DB_DATABASE', 'test');
 define('DB_PORT', '3306');
 define('DB_PREFIX', '');

@@ -1,7 +1,7 @@
 <?php
 
 // 配置文件
-if (!file_exists($config = ENV.'_'.'config.php') && !file_exists($config = 'config.php')) {
+if (!file_exists($config = 'config.php')) {
 	header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
 	echo '没有正确的配置文件。';
 	exit(1); // EXIT
