@@ -1,13 +1,13 @@
 <?php
 class blogdefaultModel extends Model {
-    public function getTest($id){
-        $test_data = $this->cache->get('aaa.bbb.test');
-        if(!$test_data){
-            $results = $this->db->query('select * from test');
-            $test_data = $results->query;
+    public function getUser($id){
+        $user_data = $this->cache->get('blog.default.user');
+        if(!$user_data){
+            $results = $this->db->query('select * from sn_user');
+            $user_data = $results->query;
 
-            $this->cache->set('aaa.bbb.test',$test_data);
+            $this->cache->set('blog.default.user',$user_data);
         }
-        return $test_data;
+        return $user_data;
     }
 }

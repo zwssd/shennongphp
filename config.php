@@ -45,6 +45,6 @@ define('DB_DRIVER', 'mysqli');
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '123123');
-define('DB_DATABASE', 'test');
+define('DB_DATABASE', 'sn_blog');
 define('DB_PORT', '3306');
 define('DB_PREFIX', '');
