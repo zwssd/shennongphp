@@ -37,7 +37,7 @@ function lib($class)
 		'template' => 'template/',
 		'db' => 'db/',
 		'cache' => 'cache/',
-		'dbdrive' => 'db/drive/'.strtolower($class).'/'
+		'dbdrive' => 'db/drive/'
 	);
 
 	//正则去掉$class中的namespace
