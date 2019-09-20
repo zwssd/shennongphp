@@ -14,8 +14,6 @@ class defaultController extends Controller
         $result_array = $this->blog_default_model->getUser(1);
         var_dump($result_array);
 
-        echo 'aaabbbController   test() ok!!!';
-
         $this->res->setExp($this->load->view('blog/default',array('aa'=>'bb')));
     }
 }

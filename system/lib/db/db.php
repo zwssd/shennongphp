@@ -5,7 +5,7 @@ defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
 final class Db
 {
-    protected $mysqlidriver;
+    protected $driver;
 
     protected $reg;
 
@@ -27,9 +27,11 @@ final class Db
 	        'dbprefix' => ''
         );
 
-        $this->mysqlidriver = new MysqliDriver($db_config);
+        $class = DB_DRIVER.'Driver';
 
-        $this->mysqlidriver->initialization();
+        $this->driver = new $class($db_config);
+
+        $this->driver->initialization();
     }
 
     public function result_array(){
@@ -42,7 +44,7 @@ final class Db
             return array();
         }
 
-        while ($row = $this->mysqlidriver->fetch_assoc($this->result))
+        while ($row = $this->driver->fetch_assoc($this->result))
 		{
 			$this->result_array[] = $row;
 		}
@@ -53,7 +55,7 @@ final class Db
     public function query($query)
     {
         $results = new stdClass();
-        $this->result = $this->mysqlidriver->query($query);
+        $this->result = $this->driver->query($query);
         $results->query = $this->result_array();
         return $results;
     }

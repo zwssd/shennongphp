@@ -82,6 +82,6 @@ class Sqlite3Driver
     }
 
     public function fetch_assoc($result){
-        return $result->fetch_assoc();
+        return $result->fetchArray();
     }
 }
