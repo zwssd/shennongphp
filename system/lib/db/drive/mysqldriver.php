@@ -55,16 +55,14 @@ class MysqlDriver
             return false;
         }
 
-        $this->select_db($this->database);
-
-        return $this->set_charset($this->char_set);
+        return $this->select_db($this->database);
     }
 
     public function db_connect()
     {
         $client_flags = ($this->compress === TRUE) ? MYSQL_CLIENT_COMPRESS : 0;
 
-        if (!$this->mysql_connect = mysql_connect($this->hostname.''.$this->port, $this->username, $this->password, $this->database, $this->socket, true, $client_flags))
+        if (!$this->mysql_connect = mysql_connect($this->hostname.':'.$this->port, $this->username, $this->password, true, $client_flags))
         {
             return false;
         }
@@ -72,11 +70,6 @@ class MysqlDriver
         return $this->mysql_connect;
     }
 
-    protected function set_charset($charset)
-	{
-		return $this->conn->set_charset($charset);
-    }
-    
     protected function select_db($database = '')
     {
         if($database === '')    
@@ -84,7 +77,7 @@ class MysqlDriver
             $database = $this->database;
         }
 
-        if($this->conn->select_db($database))
+        if($this->conn = mysql_select_db($database,$this->conn))
         {
             $this->database = $database;
 			$this->data_cache = array();
@@ -110,7 +103,8 @@ class MysqlDriver
 
     public function query($sql)
 	{
-        return $this->conn->query($this->trim_query($sql));
+        $this->conn = mysql_query($this->trim_query($sql));
+        return $this->conn;
 	}
 
     protected function trim_query($sql){
@@ -121,6 +115,6 @@ class MysqlDriver
     }
 
     public function fetch_assoc($result){
-        return $result->fetch_assoc();
+        return mysql_fetch_assoc($result);
     }
 }
