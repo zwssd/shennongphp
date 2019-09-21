@@ -12,6 +12,7 @@ final class Db
     public $result;
 
     public $result_array = array();
+    public $result_object = array();
 
     public function __construct($reg)
     {

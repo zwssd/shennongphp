@@ -108,29 +108,10 @@ class PdoDriver
     {
         $this->state = $this->conn->prepare($sql);
 
-        $result = false;
-
         if ($this->state && $this->state->execute($params)) {
-            $data = array();
-
-            while ($row = $this->state->fetch(PDO::FETCH_ASSOC)) {
-                $data[] = $row;
-            }
-
-            $result = new stdClass();
-            $result->row = (isset($data[0]) ? $data[0] : array());
-            $result->rows = $data;
-            $result->num_rows = $this->state->rowCount();
-        }
-
-        if ($result) {
-            return $result;
-        } else {
-            $result = new stdClass();
-            $result->row = array();
-            $result->rows = array();
-            $result->num_rows = 0;
-            return $result;
+            return $this->state;
+        }else {
+            return null;
         }
     }
 
@@ -167,13 +148,21 @@ class PdoDriver
         $this->conn = null;
     }
 
-    public function fetch_assoc()
+    public function fetch_assoc($result)
 	{
-		return $this->result->fetch(PDO::FETCH_ASSOC);
+        $data = array();
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = $row;
+        } 
+        return $data;
 	}
 
-	public function fetch_object($class_name = 'stdClass')
+	public function fetch_object($result, $class_name = 'stdClass')
 	{
-		return $this->result->fetchObject($class_name);
+        $data = array();
+        while ($row = $result->fetchObject($class_name)) {
+            $data[] = $row;
+        }
+        return $data;
 	}
 }

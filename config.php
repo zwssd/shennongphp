@@ -41,8 +41,8 @@ $__['cache_expire']         = 3600;
 define('DEFAULT_ROUTE','blog/default/index');
 
 //数据库配置
-define('DB_DRIVER', 'Sqlite3'); // Mysqli Mysql Pdo Sqlite3
-define('DB_DATABASE', BASE_PATH.'sn_blog.db'); // Sqlite3为文件地址
+define('DB_DRIVER', 'Pdo'); // Mysqli Mysql Pdo Sqlite3
+define('DB_DATABASE', 'sn_blog'); // Sqlite3为文件地址:BASE_PATH.'sn_blog.db'
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '123123');

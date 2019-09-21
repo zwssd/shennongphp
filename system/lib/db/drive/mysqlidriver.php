@@ -128,8 +128,8 @@ class MysqliDriver
         return $result->fetch_assoc();
     }
 
-    public function fetch_object($class_name = 'stdClass')
+    public function fetch_object($result,$class_name = 'stdClass')
 	{
-		return $this->result->fetch_object($class_name);
+		return $result->fetch_object($class_name);
 	}
 }
