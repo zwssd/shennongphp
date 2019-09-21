@@ -166,4 +166,14 @@ class PdoDriver
     {
         $this->conn = null;
     }
+
+    public function fetch_assoc()
+	{
+		return $this->result->fetch(PDO::FETCH_ASSOC);
+	}
+
+	public function fetch_object($class_name = 'stdClass')
+	{
+		return $this->result->fetchObject($class_name);
+	}
 }

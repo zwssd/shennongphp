@@ -84,4 +84,25 @@ class Sqlite3Driver
     public function fetch_assoc($result){
         return $result->fetchArray();
     }
+
+    public function fetch_object($class_name = 'stdClass')
+	{
+		// No native support for fetching rows as objects
+		if (($row = $this->result->fetchArray(SQLITE3_ASSOC)) === FALSE)
+		{
+			return FALSE;
+		}
+		elseif ($class_name === 'stdClass')
+		{
+			return (object) $row;
+		}
+
+		$class_name = new $class_name();
+		foreach (array_keys($row) as $key)
+		{
+			$class_name->$key = $row[$key];
+		}
+
+		return $class_name;
+	}
 }

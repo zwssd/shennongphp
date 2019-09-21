@@ -127,4 +127,9 @@ class MysqliDriver
     public function fetch_assoc($result){
         return $result->fetch_assoc();
     }
+
+    public function fetch_object($class_name = 'stdClass')
+	{
+		return $this->result->fetch_object($class_name);
+	}
 }

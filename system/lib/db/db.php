@@ -52,11 +52,35 @@ final class Db
 		return $this->result_array;
     }
 
-    public function query($query)
+    public function result_object()
+	{
+		if (count($this->result_object) > 0)
+		{
+			return $this->result_object;
+		}
+
+		if (!$this->result)
+		{
+			return array();
+		}
+
+		while ($row = $this->driver->fetch_object($this->result))
+		{
+			$this->result_object[] = $row;
+		}
+
+		return $this->result_object;
+	}
+
+    public function query($query, $result_type = 'array')
     {
         $results = new stdClass();
         $this->result = $this->driver->query($query);
-        $results->query = $this->result_array();
+        if($result_type=='array'){
+            $results->query = $this->result_array();
+        }else{
+            $results->query = $this->result_object();
+        }
         return $results;
     }
 }
