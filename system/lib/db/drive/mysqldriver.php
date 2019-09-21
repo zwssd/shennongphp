@@ -118,8 +118,8 @@ class MysqlDriver
         return mysql_fetch_assoc($result);
     }
 
-    public function fetch_object($class_name = 'stdClass')
+    public function fetch_object($result, $class_name = 'stdClass')
 	{
-		return mysql_fetch_object($this->result, $class_name);
+		return mysql_fetch_object($result, $class_name);
 	}
 }
