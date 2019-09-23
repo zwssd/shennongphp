@@ -27,6 +27,8 @@ if (!isset($_SERVER['REQUEST_URI'])) {
 	}
 }
 
+
+
 function lib($class)
 {
 	$result = false;
@@ -41,8 +43,8 @@ function lib($class)
 	);
 
 	//正则去掉$class中的namespace
-	if(strrpos($class,"\\")>0){
-		$class = preg_replace('/.*\\\\/','',$class);
+	if (strrpos($class, "\\") > 0) {
+		$class = preg_replace('/.*\\\\/', '', $class);
 	}
 
 	foreach ($libsubpath as $key => $value) {
@@ -53,9 +55,9 @@ function lib($class)
 			break;
 		}
 	}
-	if($result){
+	if ($result) {
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
@@ -67,6 +69,8 @@ spl_autoload_extensions('.php');
 $logger = new Log();
 $reg->set('log', $logger);
 
+// 字符串处理
+require_once(SYSTEM_PATH . 'lib/mbstring.php');
 // 控制器基类
 require_once(SYSTEM_PATH . 'base/controller.php');
 // 模型基类
@@ -78,7 +82,7 @@ $reg->set('load', $load);
 
 // 数据库
 $db = new Db($reg);
-$reg->set('db',$db);
+$reg->set('db', $db);
 
 // 缓存
 $cache = new Cache($__['cache_engine'], $__['cache_expire']);

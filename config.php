@@ -40,11 +40,27 @@ $__['cache_expire']         = 3600;
 // 默认操作名
 define('DEFAULT_ROUTE','blog/default/index');
 
+// 字符串操作
+if (extension_loaded('mbstring')) {
+	define('MB_ENABLED', TRUE);
+	@ini_set('mbstring.internal_encoding', $charset);
+	mb_substitute_character('none');
+} else {
+	define('MB_ENABLED', FALSE);
+}
+
+if (extension_loaded('iconv')) {
+	define('ICONV_ENABLED', TRUE);
+	@ini_set('iconv.internal_encoding', $charset);
+} else {
+	define('ICONV_ENABLED', FALSE);
+}
+
 //数据库配置
-define('DB_DRIVER', 'Mysql'); // Mysqli Mysql Pdo Sqlite3
+define('DB_DRIVER', 'Mysqli'); // Mysqli Mysql Pdo Sqlite3
 define('DB_DATABASE', 'sn_blog'); // Sqlite3为文件地址:BASE_PATH.'sn_blog.db'
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', '123123');
 define('DB_PORT', '3306');
 define('DB_PREFIX', '');
