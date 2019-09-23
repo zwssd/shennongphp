@@ -69,6 +69,9 @@ spl_autoload_extensions('.php');
 $logger = new Log();
 $reg->set('log', $logger);
 
+// Utf8处理
+new Utf8($reg);
+
 // 字符串处理
 require_once(SYSTEM_PATH . 'lib/mbstring.php');
 // 控制器基类
