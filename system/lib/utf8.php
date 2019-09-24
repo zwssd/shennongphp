@@ -9,9 +9,9 @@ class Utf8 {
 
 	public function __construct($reg)
 	{
-		$this->logger = $reg;
+		$this->logger = $reg->get('log');
 
-		if (defined('PREG_BAD_UTF8_ERROR') && (ICONV_ENABLED === TRUE OR MB_ENABLED === TRUE) && str_replace('-','',strtoupper(config_item('charset'))) === 'UTF8')
+		if ((ICONV_ENABLED === true OR MB_ENABLED === true) && str_replace('-','',strtoupper(get_config('charset'))) === 'UTF8')
 		{
 			define('UTF8_ENABLED', TRUE);
 			$this->logger->write('UTF-8 可用');

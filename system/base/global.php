@@ -3,7 +3,6 @@
 // 框架根
 defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
-
 if(!function_exists('handler_error')) {
     function handler_error($code, $message, $file, $line)
     {
@@ -35,7 +34,7 @@ if(!function_exists('handler_error')) {
     }
 }
 
-if ( ! function_exists('show_error'))
+if (!function_exists('show_error'))
 {
 	function show_error($message, $status_code = 500, $heading = 'An Error Was Encountered')
 	{
@@ -53,5 +52,22 @@ if ( ! function_exists('show_error'))
 		$except = new Except();
 		echo $except->show_error($heading, $message, 'show_error', $status_code);
 		exit($exit_status);
+	}
+}
+
+if (!function_exists('get_config'))
+{
+	function get_config($item)
+	{
+        global $__;
+
+		if (!empty($__))
+		{
+            return isset($__[$item]) ? $__[$item] : NULL; 
+        }
+        
+        set_status_header(503);
+		echo '配置文件错误！';
+		exit(3); // EXIT_CONFIG
 	}
 }
