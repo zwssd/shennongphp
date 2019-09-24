@@ -36,8 +36,10 @@ if(!function_exists('handler_error')) {
 
 if (!function_exists('show_error'))
 {
-	function show_error($message, $status_code = 500, $heading = 'An Error Was Encountered')
+	function show_error($message, $status_code = 500, $heading = '遇到错误')
 	{
+        global $reg;
+
 		$status_code = abs($status_code);
 		if ($status_code < 100)
 		{
@@ -49,7 +51,7 @@ if (!function_exists('show_error'))
 			$exit_status = 1; // EXIT_ERROR
 		}
 
-		$except = new Except();
+		$except = new Except($reg->get('load'));
 		echo $except->show_error($heading, $message, 'show_error', $status_code);
 		exit($exit_status);
 	}
