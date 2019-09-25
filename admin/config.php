@@ -15,33 +15,55 @@ define('ENV', 'dev');
 // 根目录
 define('BASE_PATH',realpath(dirname(__FILE__).'/../').DIRECTORY_SEPARATOR);
 
-// 系统目录
+// 系统配置
 define('SYSTEM_PATH',BASE_PATH.'system'.DIRECTORY_SEPARATOR);
 
-// 应用目录
+// 应用配置
 define('APP_PATH',BASE_PATH.'admin'.DIRECTORY_SEPARATOR);
 
-// 模板目录
+// 模板配置
 define('VIEW_PATH',APP_PATH.'view'.DIRECTORY_SEPARATOR);
 
-// Log目录
+// Log配置
 define('LOG_PATH',SYSTEM_PATH.DIRECTORY_SEPARATOR.'log'.DIRECTORY_SEPARATOR);
 
 // 缓存配置
 define('CACHE_PATH',BASE_PATH.'cache'.DIRECTORY_SEPARATOR);
 define('CACHE_PREFIX','sncache');
+
 // Apc, File, Mem, Memcached or Redis
+define('CACHE_HOSTNAME','127.0.0.1');//Mem Memcached Redis 主机
+define('CACHE_PORT','1234');//Mem Memcached Redis 端口
 $__['cache_engine']         = 'File';
 $__['cache_expire']         = 3600;
 
 // 默认操作名
-define('DEFAULT_ROUTE','blog/default/index');
+define('DEFAULT_ROUTE','blog/default');
+define('DEFAULT_METHOD','index');
 
-//数据库
-define('DB_DRIVER', 'mysqli');
+// 字符串操作
+if (extension_loaded('mbstring')) {
+	define('MB_ENABLED', TRUE);
+	@ini_set('mbstring.internal_encoding', $charset);
+	mb_substitute_character('none');
+} else {
+	define('MB_ENABLED', FALSE);
+}
+
+if (extension_loaded('iconv')) {
+	define('ICONV_ENABLED', TRUE);
+	@ini_set('iconv.internal_encoding', $charset);
+} else {
+	define('ICONV_ENABLED', FALSE);
+}
+
+//数据库配置
+define('DB_DRIVER', 'Mysqli'); // Mysqli Mysql Pdo Sqlite3
+define('DB_DATABASE', 'sn_blog'); // Sqlite3为文件地址:BASE_PATH.'sn_blog.db'
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '123123');
-define('DB_DATABASE', 'sn_blog');
 define('DB_PORT', '3306');
 define('DB_PREFIX', '');
+
+$__['charset'] = 'utf8';

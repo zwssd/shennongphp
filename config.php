@@ -38,7 +38,8 @@ $__['cache_engine']         = 'File';
 $__['cache_expire']         = 3600;
 
 // 默认操作名
-define('DEFAULT_ROUTE','blog/default/index');
+define('DEFAULT_ROUTE','blog/default');
+define('DEFAULT_METHOD','index');
 
 // 字符串操作
 if (extension_loaded('mbstring')) {
