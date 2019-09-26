@@ -91,6 +91,10 @@ $reg->set('db', $db);
 $cache = new Cache($__['cache_engine'], $__['cache_expire']);
 $reg->set('cache', $cache);
 
+// 语言包
+$lang = new Lang($__['lang']);
+$reg->set('lang', $lang);
+
 // 页面资源
 $res = new Res();
 $res->addHeader('Content-Type: text/html; charset=utf-8');

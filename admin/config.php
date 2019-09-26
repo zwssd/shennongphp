@@ -27,6 +27,9 @@ define('VIEW_PATH',APP_PATH.'view'.DIRECTORY_SEPARATOR);
 // Log配置
 define('LOG_PATH',SYSTEM_PATH.DIRECTORY_SEPARATOR.'log'.DIRECTORY_SEPARATOR);
 
+// Lang配置
+define('LANG_PATH',APP_PATH.DIRECTORY_SEPARATOR.'lang'.DIRECTORY_SEPARATOR);
+
 // 缓存配置
 define('CACHE_PATH',BASE_PATH.'cache'.DIRECTORY_SEPARATOR);
 define('CACHE_PREFIX','sncache');
@@ -67,3 +70,4 @@ define('DB_PORT', '3306');
 define('DB_PREFIX', '');
 
 $__['charset'] = 'utf8';
+$__['lang'] = 'zh-cn';

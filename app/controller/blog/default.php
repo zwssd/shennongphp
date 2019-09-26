@@ -11,12 +11,16 @@ class defaultController extends Controller
     {
         $this->load->model('blog/default');
 
-        show_error(array('error_title'=>'发生了错误','error_message'=>'函数已经取出！'));
+        $this->load->lang('blog/default');
+
+        $data['username'] = $this->lang->get_key('username');
+
+        //show_error(array('error_title'=>'发生了错误','error_message'=>'函数已经取出！'));
         $result_array = $this->blog_default_model->getUser(1);
         echo mb_strlen('神农PHP框架');
         var_dump($result_array);
 
 
-        $this->res->setExp($this->load->view('blog/default',array('aa'=>'bb')));
+        $this->res->setExp($this->load->view('blog/default',$data));
     }
 }

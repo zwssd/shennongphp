@@ -67,4 +67,13 @@ final class Load
 
         return $database->db($params,$sql_assembly);     
     }
+
+    public function lang($route, $key = '') {
+        // 过滤字符串
+		$route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
+		
+		$output = $this->reg->get('lang')->load_lang($route, $key);
+		
+		return $output;
+    }
 }
