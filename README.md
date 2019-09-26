@@ -1,7 +1,10 @@
-# shennongphp
-# 神农php框架
+## shennongphp
+## 神农php框架
 
-php framework php 框架 简洁的php框架
+####php framework php 框架 简洁的php框架
+
+##我们的口号是：简单、快速、高效。
+##我们的目标是：没有蛀牙(bug)。
 
 安装方法：
 
