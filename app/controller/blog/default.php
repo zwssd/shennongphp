@@ -20,6 +20,14 @@ class defaultController extends Controller
         echo mb_strlen('神农PHP框架');
         var_dump($result_array);
 
+        //测试分页类
+        $pag_config['url'] = 'http://127.0.0.1/shennongphp/index.php?route=blog/default/showuser&page={page}';
+        $pag_config['total'] = 200;
+        $pag_config['page'] = 1;
+        $pag_config['limit'] = 20;
+        $pag = new Pag($this->lang,$pag_config);
+        echo $pag->get_link();
+
 
         $this->res->setExp($this->load->view('blog/default',$data));
     }

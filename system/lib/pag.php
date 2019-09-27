@@ -4,22 +4,36 @@
 defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
 class Pag {
+	public $url = '';
 	public $total = 0;
 	public $page = 1;
 	public $limit = 20;
 	public $num_links = 8;
-	public $url = '';
-	public $text_first = '|&lt;';
-	public $text_last = '&gt;|';
-	public $text_next = '&gt;';
-	public $text_prev = '&lt;';
+	public $first = '|&lt;';
+	public $last = '&gt;|';
+	public $next = '&gt;';
+	public $prev = '&lt;';
 
-	/**
-     * 
-     *
-     * @return	text
-     */
-	public function render() {
+	public function __construct($lang, $params = array())
+	{
+		foreach (array('first', 'next', 'prev', 'last') as $key)
+		{
+			if (($val = $lang->get_key($key)) !== FALSE)
+			{
+				$this->$key = $val;
+			}
+		}
+
+		foreach ($params as $key => $val)
+		{
+			if (property_exists($this, $key))
+			{
+				$this->$key = $val;
+			}
+		}
+	}
+
+	public function get_link() {
 		$total = $this->total;
 
 		if ($this->page < 1) {
@@ -39,15 +53,15 @@ class Pag {
 
 		$this->url = str_replace('%7Bpage%7D', '{page}', $this->url);
 
-		$output = '<ul class="pagination">';
+		$out = '<ul class="pagination">';
 
 		if ($page > 1) {
-			$output .= '<li><a href="' . str_replace(array('&amp;page={page}', '?page={page}', '&page={page}'), '', $this->url) . '">' . $this->text_first . '</a></li>';
+			$out .= '<li><a href="' . str_replace(array('&amp;page={page}', '?page={page}', '&page={page}'), '', $this->url) . '">' . $this->first . '</a></li>';
 			
 			if ($page - 1 === 1) {
-				$output .= '<li><a href="' . str_replace(array('&amp;page={page}', '?page={page}', '&page={page}'), '', $this->url) . '">' . $this->text_prev . '</a></li>';
+				$out .= '<li><a href="' . str_replace(array('&amp;page={page}', '?page={page}', '&page={page}'), '', $this->url) . '">' . $this->prev . '</a></li>';
 			} else {
-				$output .= '<li><a href="' . str_replace('{page}', $page - 1, $this->url) . '">' . $this->text_prev . '</a></li>';
+				$out .= '<li><a href="' . str_replace('{page}', $page - 1, $this->url) . '">' . $this->prev . '</a></li>';
 			}
 		}
 
@@ -72,26 +86,26 @@ class Pag {
 
 			for ($i = $start; $i <= $end; $i++) {
 				if ($page == $i) {
-					$output .= '<li class="active"><span>' . $i . '</span></li>';
+					$out .= '<li class="active"><span>' . $i . '</span></li>';
 				} else {
 					if ($i === 1) {
-						$output .= '<li><a href="' . str_replace(array('&amp;page={page}', '?page={page}', '&page={page}'), '', $this->url) . '">' . $i . '</a></li>';
+						$out .= '<li><a href="' . str_replace(array('&amp;page={page}', '?page={page}', '&page={page}'), '', $this->url) . '">' . $i . '</a></li>';
 					} else {
-						$output .= '<li><a href="' . str_replace('{page}', $i, $this->url) . '">' . $i . '</a></li>';
+						$out .= '<li><a href="' . str_replace('{page}', $i, $this->url) . '">' . $i . '</a></li>';
 					}
 				}
 			}
 		}
 
 		if ($page < $num_pages) {
-			$output .= '<li><a href="' . str_replace('{page}', $page + 1, $this->url) . '">' . $this->text_next . '</a></li>';
-			$output .= '<li><a href="' . str_replace('{page}', $num_pages, $this->url) . '">' . $this->text_last . '</a></li>';
+			$out .= '<li><a href="' . str_replace('{page}', $page + 1, $this->url) . '">' . $this->next . '</a></li>';
+			$out .= '<li><a href="' . str_replace('{page}', $num_pages, $this->url) . '">' . $this->last . '</a></li>';
 		}
 
-		$output .= '</ul>';
+		$out .= '</ul>';
 
 		if ($num_pages > 1) {
-			return $output;
+			return $out;
 		} else {
 			return '';
 		}
