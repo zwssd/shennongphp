@@ -19,7 +19,7 @@ final class Router
 			$this->route = $_GET['route'];
 		} 
 
-        $parts = explode('/', preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$this->route));
+        $parts = array_filter(explode('/', preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$this->route)));
 
         while ($parts) {
             $file = APP_PATH . 'controller/' . implode('/', $parts) . '.php';
