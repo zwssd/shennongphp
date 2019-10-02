@@ -18,6 +18,12 @@ define('BASE_PATH',str_replace('\\','/',realpath(dirname(__FILE__).'/'))."/");
 // 系统配置
 define('SYSTEM_PATH',BASE_PATH.'system'.DIRECTORY_SEPARATOR);
 
+// 图片目录
+define('PIC_PATH',BASE_PATH.'image'.DIRECTORY_SEPARATOR);
+
+// 上传文件目录
+define('UPLOAD_PATH',BASE_PATH.'upload'.DIRECTORY_SEPARATOR);
+
 // 应用配置
 define('APP_PATH',BASE_PATH.'app'.DIRECTORY_SEPARATOR);
 

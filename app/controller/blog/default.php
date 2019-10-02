@@ -4,7 +4,7 @@ class defaultController extends Controller
 {
     public function index()
     {
-        $this->res->setExp($this->load->view('blog/default',array('aa'=>'bb')));
+        $this->res->setExp($this->load->view('blog/default', array('aa' => 'bb')));
     }
 
     public function showUser()
@@ -25,10 +25,34 @@ class defaultController extends Controller
         $pag_config['total'] = 200;
         $pag_config['page'] = 1;
         $pag_config['limit'] = 20;
-        $pag = new Pag($this->lang,$pag_config);
+        $pag = new Pag($this->lang, $pag_config);
         echo $pag->get_link();
 
+        //测试图片类
+        $pic = new Pic(UPLOAD_PATH.'shennongphplogo - 2019-10-02 - 17-39-01.png');
+		$pic->resize(100, 100);
+        $pic->save(PIC_PATH . 'shennongphplogo.png');
+        
+        //测试加密类
+        //var_dump(openssl_get_cipher_methods());
+        $encrypt = new Encryption();
+        $encrypt_str = $encrypt->encrypt('abc','hello world!');
+        echo 'encrypt_str>>>>>'.$encrypt_str.PHP_EOL;
+        $decrypt_str = $encrypt->decrypt('abc',$encrypt_str);
+        echo 'decrypt_str>>>>>'.$decrypt_str.PHP_EOL;
 
-        $this->res->setExp($this->load->view('blog/default',$data));
+
+        $this->res->setExp($this->load->view('blog/default', $data));
+    }
+
+    public function uploadFile()
+    {
+        //获取到临时文件
+        $file = $_FILES['fileField'];
+        //获取文件名
+        $fileName = $file['name'];
+        echo $fileName;
+        //移动文件到当前目录
+        move_uploaded_file($file['tmp_name'], UPLOAD_PATH.$fileName);
     }
 }
