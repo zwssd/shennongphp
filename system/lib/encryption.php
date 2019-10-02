@@ -5,11 +5,11 @@ defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
 final class Encryption {
 	private $method = 'aes-256-cbc';
-	// 处理iv向量的两行代码	
 	private $ivlen;
 	private $iv;
 	
 	public function __construct(){
+		// 处理iv向量的两行代码
         $this->ivlen = openssl_cipher_iv_length($this->method);
         $this->iv = openssl_random_pseudo_bytes($this->ivlen);
     }
