@@ -39,7 +39,8 @@ function lib($class)
 		'template' => 'template/',
 		'db' => 'db/',
 		'cache' => 'cache/',
-		'dbdrive' => 'db/drive/'
+		'dbdrive' => 'db/drive/',
+		'mail' => 'mail/'
 	);
 
 	//正则去掉$class中的namespace

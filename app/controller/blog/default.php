@@ -35,11 +35,27 @@ class defaultController extends Controller
         
         //测试加密类
         //var_dump(openssl_get_cipher_methods());
-        $encrypt = new Encryption();
+        $encrypt = new Encryp();
         $encrypt_str = $encrypt->encrypt('abc','hello world!');
         echo 'encrypt_str>>>>>'.$encrypt_str.PHP_EOL;
         $decrypt_str = $encrypt->decrypt('abc',$encrypt_str);
         echo 'decrypt_str>>>>>'.$decrypt_str.PHP_EOL;
+
+        //测试发邮件类
+        $mail = new Email('smtp');
+			$mail->parameter = '';
+			$mail->smtp_hostname = 'smtp.qq.com';
+			$mail->smtp_username = '@qq.com';
+            $mail->smtp_password = html_entity_decode('', ENT_QUOTES, 'UTF-8');
+			$mail->smtp_port = 25;
+			$mail->smtp_timeout = 5;
+	
+			$mail->setTo('@qq.com');
+			$mail->setFrom('@qq.com');
+			$mail->setSender('@qq.com');
+			$mail->setSubject('测试邮件类!!!');
+			$mail->setText('测试邮件类--正文!!!');
+			$mail->send(); 
 
 
         $this->res->setExp($this->load->view('blog/default', $data));

@@ -3,7 +3,7 @@
 // 框架根
 defined('SYSTEM_PATH') or exit('没有有效的根路径！');
 
-final class Encryption {
+final class Encryp {
 	private $method = 'aes-256-cbc';
 	private $ivlen;
 	private $iv;
