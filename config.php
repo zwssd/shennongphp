@@ -1,7 +1,7 @@
 <?php
 
 // 框架版本
-define('VERSION','0.0.1');
+define('VERSION','1.0.0');
 
 /* 应用环境
  *
@@ -41,8 +41,8 @@ define('CACHE_PATH',BASE_PATH.'cache'.DIRECTORY_SEPARATOR);
 define('CACHE_PREFIX','sncache');
 
 // Apc, File, Mem, Memcached or Redis
-define('CACHE_HOSTNAME','127.0.0.1');//Mem Memcached Redis 主机
-define('CACHE_PORT','1234');//Mem Memcached Redis 端口
+define('CACHE_HOSTNAME','');//Mem Memcached Redis 主机
+define('CACHE_PORT','');//Mem Memcached Redis 端口
 $__['cache_engine']         = 'File';
 $__['cache_expire']         = 3600;
 
@@ -67,12 +67,12 @@ if (extension_loaded('iconv')) {
 }
 
 //数据库配置
-define('DB_DRIVER', 'Mysqli'); // Mysqli Mysql Pdo Sqlite3
-define('DB_DATABASE', 'sn_blog'); // Sqlite3为文件地址:BASE_PATH.'sn_blog.db'
-define('DB_HOSTNAME', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '123123');
-define('DB_PORT', '3306');
+define('DB_DRIVER', ''); // Mysqli Mysql Pdo Sqlite3
+define('DB_DATABASE', ''); // Sqlite3为文件地址:BASE_PATH.'sn_blog.db'
+define('DB_HOSTNAME', '');
+define('DB_USERNAME', '');
+define('DB_PASSWORD', '');
+define('DB_PORT', '');
 define('DB_PREFIX', '');
 
 $__['charset'] = 'utf8';
